@@ -12,12 +12,16 @@ html{scroll-behavior:smooth}
 body{
   min-height:100vh;
   background:linear-gradient(180deg,#050505 0%,#111111 20%,#2d2d2d 60%,#555555 100%);
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:Arial,Helvetica,sans-serif;
   color:#e8e2d4;
   overflow-x:hidden;
 }
 
-.page{width:100%;max-width:1100px;margin:auto}
+.page{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
 
 .logo{padding:42px 20px 34px;text-align:center}
 
@@ -34,6 +38,7 @@ nav{
   justify-content:center;
   position:sticky;
   top:0;
+  width:100%;
   background:rgba(5,5,5,.82);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
@@ -49,6 +54,8 @@ nav a{
   color:#aaa394;
   border-left:1px solid rgba(212,175,55,.16);
   transition:.25s ease;
+  font-weight:400;
+  letter-spacing:.2px;
 }
 
 nav a:last-child{border-right:1px solid rgba(212,175,55,.16)}
@@ -64,6 +71,7 @@ nav a:focus{
 section{scroll-margin-top:80px}
 
 .hero{
+  width:100%;
   height:560px;
   position:relative;
   overflow:hidden;
@@ -100,6 +108,7 @@ section{scroll-margin-top:80px}
   font-size:28px;
   border-top:1px solid rgba(212,175,55,.25);
   z-index:5;
+  font-weight:400;
 }
 
 .slider-arrow{
@@ -122,18 +131,20 @@ section{scroll-margin-top:80px}
 .slider-arrow.right{right:22px}
 
 .popular{
+  width:100%;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:45px;
-  padding:70px;
+  padding:70px clamp(30px,7vw,120px);
   text-align:center;
   background:rgba(15,15,13,.64);
   backdrop-filter:blur(2px);
 }
 
 .card img{
-  width:180px;
-  height:180px;
+  width:100%;
+  max-width:280px;
+  height:190px;
   object-fit:cover;
   border-radius:0;
   margin-bottom:25px;
@@ -142,10 +153,11 @@ section{scroll-margin-top:80px}
 }
 
 .card p{
+  max-width:360px;
+  margin:0 auto 18px;
   font-size:13px;
   line-height:1.6;
   color:#a9a191;
-  margin-bottom:18px;
 }
 
 .card button{
@@ -154,7 +166,7 @@ section{scroll-margin-top:80px}
   background:transparent;
   color:#d6bd6f;
   cursor:pointer;
-  font-family:inherit;
+  font-family:Arial,Helvetica,sans-serif;
   transition:.25s ease;
 }
 
@@ -164,14 +176,18 @@ section{scroll-margin-top:80px}
 }
 
 .info{
-  padding:80px;
+  width:100%;
+  padding:80px clamp(30px,8vw,140px);
   border-top:1px solid rgba(212,175,55,.16);
   background:rgba(17,17,15,.64);
   backdrop-filter:blur(2px);
   text-align:center;
 }
 
-.info-box{max-width:700px;margin:auto}
+.info-box{
+  max-width:760px;
+  margin:auto;
+}
 
 .info-box h2{
   font-size:34px;
@@ -191,7 +207,8 @@ section{scroll-margin-top:80px}
 .read{text-decoration:none;color:#d6bd6f}
 
 .investors{
-  padding:90px 80px;
+  width:100%;
+  padding:90px clamp(30px,8vw,140px);
   border-top:1px solid rgba(212,175,55,.16);
   text-align:center;
   background:rgba(15,15,13,.58);
@@ -208,7 +225,7 @@ section{scroll-margin-top:80px}
 
 .investors p,
 .contact p{
-  max-width:700px;
+  max-width:760px;
   margin:auto;
   line-height:1.8;
   font-size:15px;
@@ -216,7 +233,8 @@ section{scroll-margin-top:80px}
 }
 
 .contact{
-  padding:90px 80px;
+  width:100%;
+  padding:90px clamp(30px,8vw,140px);
   border-top:1px solid rgba(212,175,55,.16);
   text-align:center;
   background:rgba(17,17,15,.56);
@@ -246,6 +264,7 @@ section{scroll-margin-top:80px}
 }
 
 footer{
+  width:100%;
   border-top:1px solid rgba(212,175,55,.16);
   padding:22px;
   text-align:center;
@@ -286,8 +305,8 @@ footer{
   }
 
   .card img{
-    width:230px;
-    height:160px;
+    max-width:330px;
+    height:190px;
   }
 
   .info,
