@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomad Capital Ventures</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(180deg,#050505 0%,#111111 20%,#2d2d2d 60%,#555555 100%);
+  font-family:Georgia,"Times New Roman",serif;
+  color:#e8e2d4;
+  overflow-x:hidden;
+}
+
+.page{width:100%;max-width:1100px;margin:auto}
+
+.logo{padding:42px 20px 34px;text-align:center}
+
+.logo img{
+  width:135px;
+  max-width:33%;
+  display:block;
+  margin:auto;
+  filter:drop-shadow(0 8px 20px rgba(212,175,55,.14));
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  position:sticky;
+  top:0;
+  background:rgba(5,5,5,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(212,175,55,.22);
+  border-bottom:1px solid rgba(212,175,55,.22);
+  z-index:100;
+}
+
+nav a{
+  padding:22px 55px;
+  font-size:14px;
+  text-decoration:none;
+  color:#aaa394;
+  border-left:1px solid rgba(212,175,55,.16);
+  transition:.25s ease;
+}
+
+nav a:last-child{border-right:1px solid rgba(212,175,55,.16)}
+
+nav a:hover,
+nav a:active,
+nav a:focus{
+  background:rgba(214,184,90,.10);
+  color:#f1e7c8;
+}
+
+.nav-scrolled{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+section{scroll-margin-top:80px}
+
+.hero{
+  height:560px;
+  position:relative;
+  overflow:hidden;
+  background:#0b0b0a;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+
+.slide::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.42));
+}
+
+.slide.active{opacity:1}
+
+.hero-title{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(8,8,7,.92);
+  color:#f1e7c8;
+  text-align:center;
+  padding:20px;
+  font-size:28px;
+  border-top:1px solid rgba(212,175,55,.25);
+  z-index:5;
+}
+
+.slider-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:8;
+  width:48px;
+  height:48px;
+  border:1px solid rgba(241,231,200,.35);
+  background:rgba(15,15,13,.35);
+  color:#f1e7c8;
+  font-size:32px;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.slider-arrow:hover{background:rgba(214,184,90,.10)}
+.slider-arrow.left{left:22px}
+.slider-arrow.right{right:22px}
+
+.popular{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:45px;
+  padding:70px;
+  text-align:center;
+  background:rgba(15,15,13,.64);
+  backdrop-filter:blur(2px);
+}
+
+.card img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:0;
+  margin-bottom:25px;
+  border:1px solid rgba(212,175,55,.32);
+  box-shadow:0 18px 45px rgba(0,0,0,.45);
+}
+
+.card p{
+  font-size:13px;
+  line-height:1.6;
+  color:#a9a191;
+  margin-bottom:18px;
+}
+
+.card button{
+  padding:10px 20px;
+  border:1px solid rgba(212,175,55,.45);
+  background:transparent;
+  color:#d6bd6f;
+  cursor:pointer;
+  font-family:inherit;
+  transition:.25s ease;
+}
+
+.card button:hover{
+  background:rgba(214,184,90,.10);
+  color:#f1e7c8;
+}
+
+.info{
+  padding:80px;
+  border-top:1px solid rgba(212,175,55,.16);
+  background:rgba(17,17,15,.64);
+  backdrop-filter:blur(2px);
+  text-align:center;
+}
+
+.info-box{max-width:700px;margin:auto}
+
+.info-box h2{
+  font-size:34px;
+  font-weight:400;
+  margin-bottom:24px;
+  line-height:1.15;
+  color:#f0eadc;
+}
+
+.info-box p{
+  color:#aaa394;
+  font-size:15px;
+  line-height:1.8;
+  margin-bottom:24px;
+}
+
+.read{text-decoration:none;color:#d6bd6f}
+
+.investors{
+  padding:90px 80px;
+  border-top:1px solid rgba(212,175,55,.16);
+  text-align:center;
+  background:rgba(15,15,13,.58);
+  backdrop-filter:blur(2px);
+}
+
+.investors h2,
+.contact h2{
+  font-size:34px;
+  font-weight:400;
+  margin-bottom:25px;
+  color:#f0eadc;
+}
+
+.investors p,
+.contact p{
+  max-width:700px;
+  margin:auto;
+  line-height:1.8;
+  font-size:15px;
+  color:#aaa394;
+}
+
+.contact{
+  padding:90px 80px;
+  border-top:1px solid rgba(212,175,55,.16);
+  text-align:center;
+  background:rgba(17,17,15,.56);
+  backdrop-filter:blur(2px);
+}
+
+.contact-button{
+  display:inline-block;
+  margin-top:28px;
+  padding:12px 34px;
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-size:13px;
+  color:#f1e7c8;
+  background:rgba(214,184,90,.10);
+  border:1px solid rgba(212,175,55,.45);
+  transition:.25s ease;
+}
+
+.contact-button:hover{background:rgba(214,184,90,.16)}
+
+.email-text{
+  margin-top:18px;
+  font-size:14px;
+  color:#aaa394;
+}
+
+footer{
+  border-top:1px solid rgba(212,175,55,.16);
+  padding:22px;
+  text-align:center;
+  font-size:13px;
+  color:#d0c9b8;
+  background:rgba(5,5,5,.35);
+}
+
+@media(max-width:900px){
+  .logo img{width:105px;max-width:36%}
+  nav{flex-wrap:wrap}
+
+  nav a{
+    flex:1 1 33%;
+    padding:18px 10px;
+    text-align:center;
+  }
+
+  .hero{height:390px}
+
+  .hero-title{
+    font-size:22px;
+    padding:17px;
+  }
+
+  .slider-arrow{
+    width:42px;
+    height:42px;
+    font-size:28px;
+  }
+
+  .slider-arrow.left{left:12px}
+  .slider-arrow.right{right:12px}
+
+  .popular{
+    grid-template-columns:1fr;
+    padding:45px 30px;
+  }
+
+  .card img{
+    width:230px;
+    height:160px;
+  }
+
+  .info,
+  .investors,
+  .contact{
+    padding:60px 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header class="logo">
+  <img src="https://www.nomadcapital.ventures/NMPLACEHOLDER.png" alt="Nomad Capital Ventures">
+</header>
+
+<nav id="navbar">
+  <a href="#multifamily">Multi-family</a>
+  <a href="#invest">Invest</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="multifamily">
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1800&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80');"></div>
+
+  <button class="slider-arrow left" id="prevSlide" aria-label="Previous slide">‹</button>
+  <button class="slider-arrow right" id="nextSlide" aria-label="Next slide">›</button>
+
+  <div class="hero-title">Multi-family Real Estate</div>
+</section>
+
+<section class="popular">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" alt="Multi-family property exterior">
+    <p>Thoughtfully selected smaller to mid-size multi-family properties with long-term value.</p>
+    <button>Learn More</button>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" alt="Residential apartment property">
+    <p>Focused on practical acquisitions, stable communities, and disciplined property improvements.</p>
+    <button>Learn More</button>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=600&q=80" alt="Modern multifamily exterior">
+    <p>Building long-term value through careful stewardship and timeless real estate principles.</p>
+    <button>Learn More</button>
+  </div>
+</section>
+
+<section class="info" id="invest">
+  <div class="info-box">
+    <h2>Disciplined<br>Investment</h2>
+    <p>
+      Nomad Capital Ventures pursues opportunities with a long-term mindset,
+      emphasizing quality assets, thoughtful improvements, and sustainable growth.
+    </p>
+    <a href="#contact" class="read">Contact →</a>
+  </div>
+</section>
+
+<section class="investors">
+  <h2>Invest</h2>
+  <p>
+    Nomad Capital Ventures partners with investors seeking thoughtfully selected residential real estate opportunities,
+    emphasizing disciplined acquisitions, responsible stewardship, and long-term appreciation.
+  </p>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact</h2>
+  <p>Interested in working with Nomad? Send us a message below.</p>
+
+  <a class="contact-button" href="mailto:damon@nomadcapital.ventures">CONTACT</a>
+
+  <div class="email-text">damon@nomadcapital.ventures</div>
+</section>
+
+<footer>
+  © <span id="year"></span> Nomad Capital Ventures
+</footer>
+
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  navbar.classList.toggle("nav-scrolled", window.scrollY > 20);
+});
+
+const slides = document.querySelectorAll(".slide");
+const prevSlide = document.getElementById("prevSlide");
+const nextSlide = document.getElementById("nextSlide");
+
+let currentSlide = 0;
+let slideTimer;
+
+function showSlide(index){
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (index + slides.length) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
+function next(){
+  showSlide(currentSlide + 1);
+}
+
+function prev(){
+  showSlide(currentSlide - 1);
+}
+
+function startSlider(){
+  slideTimer = setInterval(next, 5200);
+}
+
+function resetSlider(){
+  clearInterval(slideTimer);
+  startSlider();
+}
+
+nextSlide.addEventListener("click", () => {
+  next();
+  resetSlider();
+});
+
+prevSlide.addEventListener("click", () => {
+  prev();
+  resetSlider();
+});
+
+startSlider();
+</script>
+
+</body>
+</html>
